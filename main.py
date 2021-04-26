@@ -27,7 +27,6 @@ def get_orders():
   response = requests.get(f'https://{username}:{password}@{shopify_store}/admin/orders.json?created_at_min={start_date}&created_at_max={end_date}')
   response_data = response.json()
 
-
   for i in response_data['orders']:
     create_order = order(number = i['order_number'], currency= i['currency'], amount = i['current_total_price'], tax = i['current_total_tax'], country = i['billing_address']['country'])
     list_of_orders.append(create_order)
